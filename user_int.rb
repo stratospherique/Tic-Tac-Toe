@@ -4,9 +4,15 @@ class UserInteface
   def initialize()
     @grid=Array.new(7,'*')
     for i in (0...@grid.length)
-      @grid[i]=Array.new(7,'*')
+      @grid[i] = Array.new(7,'*')
     end
-  end
+    for i in (1...@grid.length - 1)
+      next if i % 2 == 0
+      for j in (1...@grid[i].length)
+        @grid[i][j] = " "  if j % 2 != 0          
+      end
+    end
+  end  
 
   def execute
     puts "the name of the player 1 ="
@@ -19,7 +25,7 @@ class UserInteface
   def display(grid)
     for i in (0...7)
       for j in (0...7)
-        print grid[i][j]+" "
+        print grid[i][j] + " "
       end
       print "\n"
     end
