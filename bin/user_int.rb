@@ -12,6 +12,7 @@ class UserInteface
         @grid[i][j] = " "  if j % 2 != 0          
       end
     end
+    @game=Game.new
   end  
 
   def execute
@@ -20,6 +21,22 @@ class UserInteface
     puts "the name of the player 2 ="
     @player2 = gets.chomp
     display(@grid)
+    i=2
+    loop do 
+      if i==2
+        i=1 
+      else i=2
+      end
+      puts "player #{i} what's your next move : "
+
+
+      if @game.check_winner(@grid)=="player"
+        puts 
+        break
+        if 
+
+    end
+    
   end
 
   def display(grid)
