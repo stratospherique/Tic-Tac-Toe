@@ -32,7 +32,7 @@ class Game
   end
 
   def get_realG(board)
-    
+    temp = []
     1.upto(5) do |i|
       next if i % 2 == 0
       1.upto(5) do |j|
@@ -41,6 +41,7 @@ class Game
         end
       end
     end
+    
   end
 
   private 

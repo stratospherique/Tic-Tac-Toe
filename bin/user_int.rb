@@ -51,10 +51,10 @@ class UserInteface
             break if (1..9).include?(user_inpt)
             puts "please enter a number between 1 and 9"
             end
-          
+            p @game.real_grid
             raise "cell #{user_inpt} is taken pick another one" if @game.cell_taken?(user_inpt) 
-          
-        rescue StandardError => e
+            
+        rescue StandardException => e
           puts e
           retry
         else
