@@ -22,13 +22,29 @@ class UserInteface
     @player2 = gets.chomp
     display(@grid)
     i=2
-    loop do 
-      if i==2
-        i=1 
-      else i=2
+    next_player = true
+    while next_player
+      next_player = false
+        loop do 
+          if i == 2
+            i = 1 
+          else i = 2
+          end
+          puts "player #{i} what's your next move : "
+          user_inpt = gets.chomp.to_i
+          if cell_taken?(user_inpt)
+            puts "Cell #{cell} is taken pick another one"
+            return next_player = true
+          elsif i == 1
+            @grid[user_inpt - 1] = "X"
+          elsif i == 2
+            @grid[user_inpt - 1] = "O"
+          end
+          check_winner(@grid)
+          next_player = true
+        end
       end
-      puts "player #{i} what's your next move : "
-
+      
 
       if @game.check_winner(@grid)=="player"
         puts 
