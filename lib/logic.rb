@@ -14,11 +14,11 @@ class Game
   end
   return "player 1 wins!!" if horizontal(@real_grid, "X") || vertical(@real_grid,"X") || diagonal(@real_grid,"X")
   return "player 2 wins!!" if horizontal(@real_grid, "O") || vertical(@real_grid,"O") || diagonal(@real_grid,"O")
-  return if 
-  return "draw" 
+  return 'next player turn' if filled(@real_grid)
+  return "draw"
 
   def horizontal(real, str)
-    (real[0].all? str) || (real[1].all? str) || (real[2].all? str)
+    return false if !(real[0].all? str) || !(real[1].all? str) || !(real[2].all? str)
   end
 
   def vertical(real, str)
@@ -41,4 +41,13 @@ class Game
     
   end
 
+  def filled(board)
+    temp_grid = @real_grid.flatten
+    temp_grid.any?(Integers)
+  end
+
+  def turn
+    temp_grid = @real_grid.flatten
+    return "Cell  #{cell} is occupied pick another one" if temp_grid[user_inpt-1]
+  end
 end
