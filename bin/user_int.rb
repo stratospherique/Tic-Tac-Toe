@@ -20,39 +20,50 @@ class UserInteface
     @player1 = gets.chomp
     puts "the name of the player 2 ="
     @player2 = gets.chomp
-    display(@grid)
-    i=2
-    next_player = true
-    while next_player
-      next_player = false
-        loop do 
-          if i == 2
-            i = 1 
-          else i = 2
-          end
-          puts "player #{i} what's your next move : "
-          user_inpt = gets.chomp.to_i
-          if cell_taken?(user_inpt)
-            puts "Cell #{cell} is taken pick another one"
-            return next_player = true
-          elsif i == 1
-            @grid[user_inpt - 1] = "X"
-          elsif i == 2
-            @grid[user_inpt - 1] = "O"
-          end
-          check_winner(@grid)
-          next_player = true
+    i==2
+    while true 
+    loop do
+      display(@grid)
+        if i==2
+          i=1
+        else
+          i=2
         end
-      end
+        begin 
+          puts "player #{i} what's your next move : "
+          begin
+            user_inpt = gets.chomp.to_i
+          rescue
+            puts "please put a number between 1 and 9"
+          else
+            raise "cell #{user_inpt} is taken pick another one"if cell_taken?(user_inpt)
+          end
+        rescue StandardError=>e
+          puts e
+          retry
+        else
+          @grid[user_inpt - 1] = "X" if i==1
+          @grid[user_inpt - 1] = "O" if i==2
+        end
       
-
-      if @game.check_winner(@grid)=="player"
-        puts 
+      
+      if @game.check_winner(@grid)=="player 1"
+        puts "player 1 wins" 
         break
-        if 
-
+      elsif @game.check_winner(@grid)=="player 2"
+        puts "player 2 wins" 
+        break
+      elsif @game.check_winner(@grid)=="draw"
+        puts "No one has won the Game" 
+        break
+      else
+        puts "Game ON !!"
+      end
     end
-    
+    puts "Game is Finished"
+    puts "do wanna rematch"
+    break if gets.chomp="N"
+    end
   end
 
   def display(grid)
