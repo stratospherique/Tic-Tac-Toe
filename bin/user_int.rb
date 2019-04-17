@@ -1,5 +1,16 @@
 class UserInteface
   attr_accessor :player1 , :player2, :grid
+  @@add = {
+    1 => "11",
+    2 => "13",
+    3 => "15",
+    4 => "31",
+    5 => "33",
+    6 => "35",
+    7 => "51",
+    8 => "53",
+    9 => "55"
+  }
 
   def initialize()
     @grid=Array.new(7,'*')
@@ -21,7 +32,9 @@ class UserInteface
     puts "the name of the player 2 ="
     @player2 = gets.chomp
     i==2
-    while true 
+    rematch = false
+    while rematch 
+      rematch = true
     loop do
       display(@grid)
         if i==2
@@ -42,8 +55,12 @@ class UserInteface
           puts e
           retry
         else
-          @grid[user_inpt - 1] = "X" if i==1
-          @grid[user_inpt - 1] = "O" if i==2
+          position = @@add[user_inpt]
+          
+          
+          
+          @grid[user_inpt - 1] = "X" if i == 1
+          @grid[user_inpt - 1] = "O" if i == 2
         end
       
       
@@ -61,8 +78,8 @@ class UserInteface
       end
     end
     puts "Game is Finished"
-    puts "do wanna rematch"
-    break if gets.chomp="N"
+    puts "Do you want a rematch"
+    rematch = false if gets.chomp="N"
     end
   end
 
