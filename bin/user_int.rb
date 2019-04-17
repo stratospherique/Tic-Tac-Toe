@@ -1,3 +1,4 @@
+load('../lib/game-logic.rb')
 class UserInteface
   attr_accessor :player1 , :player2, :grid
   @@add = {
@@ -47,20 +48,18 @@ class UserInteface
           begin
             user_inpt = gets.chomp.to_i
           rescue
-            puts "please put a number between 1 and 9"
+            puts "please enter a number between 1 and 9"
+            retry
           else
-            raise "cell #{user_inpt} is taken pick another one"if cell_taken?(user_inpt)
+            raise "cell #{user_inpt} is taken pick another one" if cell_taken?(user_inpt) || !(1..9).include?(user_inpt)
           end
-        rescue StandardError=>e
+        rescue StandardError => e
           puts e
           retry
         else
           position = @@add[user_inpt]
-          
-          
-          
-          @grid[user_inpt - 1] = "X" if i == 1
-          @grid[user_inpt - 1] = "O" if i == 2
+          @grid[position[0].to_i][position[1].to_i] = "X" if i == 1
+          @grid[position[0].to_i][position[1].to_i] = "O" if i == 2
         end
       
       
@@ -71,14 +70,14 @@ class UserInteface
         puts "player 2 wins" 
         break
       elsif @game.check_winner(@grid)=="draw"
-        puts "No one has won the Game" 
+        puts "No one has won the Game. It's a draw!!!!" 
         break
       else
         puts "Game ON !!"
       end
     end
     puts "Game is Finished"
-    puts "Do you want a rematch"
+    puts "Do you want a rematch Y/N"
     rematch = false if gets.chomp="N"
     end
   end
