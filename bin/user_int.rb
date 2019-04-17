@@ -45,14 +45,15 @@ class UserInteface
         end
         begin 
           puts "@player#{i} what's your next move : "
-          begin
+          user_inpt=""
+            loop do
             user_inpt = gets.chomp.to_i
-          rescue
+            break if (1..9).include?(user_inpt)
             puts "please enter a number between 1 and 9"
-            retry
-          else
-            raise "cell #{user_inpt} is taken pick another one" if @game.cell_taken?(user_inpt) || !(1..9).include?(user_inpt)
-          end
+            end
+          
+            raise "cell #{user_inpt} is taken pick another one" if @game.cell_taken?(user_inpt) 
+          
         rescue StandardError => e
           puts e
           retry
