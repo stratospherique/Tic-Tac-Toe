@@ -38,13 +38,13 @@ class UserInteface
       rematch = false
     loop do
       display(@grid)
-        if i==2
-          i=1
+        if i == 2
+          i = 1
         else
-          i=2
+          i = 2
         end
         begin 
-          puts "player #{i} what's your next move : "
+          puts "@player#{i} what's your next move : "
           begin
             user_inpt = gets.chomp.to_i
           rescue
@@ -63,13 +63,13 @@ class UserInteface
         end
       
       
-      if @game.check_winner(@grid)=="player 1"
+      if @game.check_winner(@grid) == "player 1"
         puts "player 1 wins" 
         break
-      elsif @game.check_winner(@grid)=="player 2"
+      elsif @game.check_winner(@grid) == "player 2"
         puts "player 2 wins" 
         break
-      elsif @game.check_winner(@grid)=="draw"
+      elsif @game.check_winner(@grid) == "draw"
         puts "No one has won the Game. It's a draw!!!!" 
         break
       else
