@@ -1,16 +1,19 @@
 class Game
   attr_accessor :real_grid
   def initialize()
-    @real_grid = Array.new(3, "") { Array.new(3, "") }
+    @real_grid = Array.new(3, 0) { Array.new(3, 0) }
+    p @real_grid[0][1]
+    k=1
+    3.times do |i|
+      3.times do |j|
+        @real_grid[i][j] = k.to_s
+        k+=1
+      end
+    end
   end
 
   def check_winner(board)
-    for i in (1..5)
-      next if i % 2 == 0
-      for j in (1..5)
-        @real_grid[i - 1][j - 1] = board[i][j] if j % 2 != 0
-      end
-    end   
+    get_realG(board)  
     return "player 1 wins!!" if horizontal(@real_grid, "X") || vertical(@real_grid,"X") || diagonal(@real_grid,"X")
     return "player 2 wins!!" if horizontal(@real_grid, "O") || vertical(@real_grid,"O") || diagonal(@real_grid,"O")
     return 'next player turn' if filled()
@@ -19,16 +22,23 @@ class Game
 
 
   def cell_taken?(user_inpt)
-    p @real_grid
     temp_grid = @real_grid.flatten
     uses = "XO"
     if uses.include?(temp_grid[user_inpt-1])
-      return false
+      return true
     else 
-      return true 
+      return false 
     end
   end
 
+  def get_realG(board)
+    for i in (1..5)
+      next if i % 2 == 0
+      for j in (1..5)
+        @real_grid[i - 1][j - 1] = board[i][j] if j % 2 != 0
+      end
+    end
+  end
 
   private 
   def horizontal(real, str)
