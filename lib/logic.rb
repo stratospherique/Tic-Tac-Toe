@@ -8,15 +8,28 @@ class Game
       next if i % 2 == 0
       for j in (1..5)
         @real_grid[i - 1][j - 1] = board[i][j] if j % 2 != 0
-        end
       end
     end
+    end
+  
+    return "player 1 wins!!" if horizontal(@real_grid, "X") || vertical(@real_grid,"X") || diagonal(@real_grid,"X")
+    return "player 2 wins!!" if horizontal(@real_grid, "O") || vertical(@real_grid,"O") || diagonal(@real_grid,"O")
+    return 'next player turn' if filled(@real_grid)
+    return "draw"
   end
-  return "player 1 wins!!" if horizontal(@real_grid, "X") || vertical(@real_grid,"X") || diagonal(@real_grid,"X")
-  return "player 2 wins!!" if horizontal(@real_grid, "O") || vertical(@real_grid,"O") || diagonal(@real_grid,"O")
-  return 'next player turn' if filled(@real_grid)
-  return "draw"
 
+
+  def cell_taken?(user_inpt)
+    temp_grid = @real_grid.flatten
+    if ("X", "O").include?(temp_grid[user_inpt-1])
+      return false
+    else 
+      return true 
+    end
+  end
+
+
+  private 
   def horizontal(real, str)
     return false if !(real[0].all? str) || !(real[1].all? str) || !(real[2].all? str)
   end
@@ -42,12 +55,9 @@ class Game
   end
 
   def filled(board)
-    temp_grid = @real_grid.flatten
+    temp_grid = board.flatten
     temp_grid.any?(Integers)
   end
 
-  def turn
-    temp_grid = @real_grid.flatten
-    return "Cell  #{cell} is occupied pick another one" if temp_grid[user_inpt-1]
-  end
+  
 end
