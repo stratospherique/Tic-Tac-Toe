@@ -32,34 +32,27 @@ class Game
   end
 
   def get_realG(board)
-    res=[]
-  1.upto(5) do |i|
-    next if i % 2 == 0
-    1.upto(5) do |j|
-      if j % 2 != 0
-      res << board[i][j]
-      end
-    end
-  end
-  if @real_grid.flatten.all?{|x| (1..9).include?(x.to_i)}
-    @real_grid=res.enum_for(:each_slice, 3).to_a 
-  else
-    3.times do |i|
-      3.times do |j|
-        if res[i][j]!=@real_grid[i][j]
-          if (1..9).include?(@real_grid[i][j])
-            @real_grid[i][j]=res[i][j]
+    r = 0
+    c = 0
+    1.upto(5) do |i|
+      next if i % 2 == 0
+      1.upto(5) do |j|
+        if j % 2 != 0
+          if board[i][j] != " "
+            @real_grid[r][c] = board[i][j]
           end
+          c += 1
         end
       end
+      r += 1
+      c = 0
     end
-  end
 end
 
   private 
   def horizontal(real, str)
     p real
-    return false if !(real[0].all? str) || !(real[1].all? str) || !(real[2].all? str)
+    return false if !real[0].all?(str) || !real[1].all?(str) || !real[2].all?(str)
   end
 
   def vertical(real, str)
@@ -84,7 +77,7 @@ end
 
   def filled()
     temp_grid = @real_grid.flatten
-    temp_grid.any?(Integers)
+    temp_grid.any?{ |x| (1..9).include?(x.to_i) }
   end
 
   
