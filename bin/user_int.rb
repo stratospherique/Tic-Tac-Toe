@@ -44,17 +44,15 @@ class UserInteface
           i = 2
         end
         begin 
-          puts "@player#{i} what's your next move : "
+          puts "@player #{i} what's your next move : "
           user_inpt=""
             loop do
             user_inpt = gets.chomp.to_i
             break if (1..9).include?(user_inpt)
             puts "please enter a number between 1 and 9"
             end
-            p @game.real_grid
             raise "cell #{user_inpt} is taken pick another one" if @game.cell_taken?(user_inpt) 
-            
-        rescue StandardException => e
+        rescue StandardError => e
           puts e
           retry
         else
@@ -64,14 +62,17 @@ class UserInteface
         end
       
       
-      if @game.check_winner(@grid) == "player 1"
-        puts "player 1 wins" 
+      if @game.check_winner(@grid) == 1
+        puts "player 1 wins"
+        display(@grid) 
         break
-      elsif @game.check_winner(@grid) == "player 2"
-        puts "player 2 wins" 
+      elsif @game.check_winner(@grid) == 2
+        puts "player 2 wins"
+        display(@grid) 
         break
-      elsif @game.check_winner(@grid) == "draw"
-        puts "No one has won the Game. It's a draw!!!!" 
+      elsif @game.check_winner(@grid) == 0
+        puts "No one has won the Game. It's a draw!!!!"
+        display(@grid) 
         break
       else
         puts "Game ON !!"

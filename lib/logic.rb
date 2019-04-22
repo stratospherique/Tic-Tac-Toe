@@ -14,10 +14,10 @@ class Game
 
   def check_winner(board)
     get_realG(board)  
-    return "player 1 wins!!" if horizontal(@real_grid, "X") || vertical(@real_grid,"X") || diagonal(@real_grid,"X")
-    return "player 2 wins!!" if horizontal(@real_grid, "O") || vertical(@real_grid,"O") || diagonal(@real_grid,"O")
-    return 'next player turn' if filled()
-    return "draw"
+    return 1 if horizontal(@real_grid, "X") || vertical(@real_grid,"X") || diagonal(@real_grid,"X")
+    return 2 if horizontal(@real_grid, "O") || vertical(@real_grid,"O") || diagonal(@real_grid,"O")
+    return -1 if filled()
+    return 0
   end
 
 
@@ -51,28 +51,52 @@ end
 
   private 
   def horizontal(real, str)
-    p real
-    return false if !real[0].all?(str) || !real[1].all?(str) || !real[2].all?(str)
+   if real[0].all?(str) || real[1].all?(str) || real[2].all?(str)
+    return true
+   else 
+    return false
+   end
   end
 
   def vertical(real, str)
+    check=[]
+    res=true
     for j in (0..2)
       for i in (0...2)
-        if real[i][j]!=real[i+1][j] && real[i][j]==str
-          return false
+        if real[i][j]==real[i+1][j] && real[i][j]==str
+          res=true
+        else
+          res=false
+          break
         end
       end
+      check << res
     end
-    true
+    check.any?(true)
   end
 
   def diagonal(real, str)
     res=true
+    check=[]
     for i in (0...2)
-      return false if (real[i][i] != real[i + 1][i + 1]) && real[i][i] = str
-      return false if (real[2 - i][i] != real[2 - i + 1][i + 1]) && real[i][i] = str
+      if (real[i][i] == real[i + 1][i + 1]) && real[i][i] == str
+        res=true
+      else
+        res=false
+        break
+      end
     end
-    
+    check << res
+    for i in (0...2)
+      if (real[2 - i][i] == real[2 - i - 1][i + 1]) && real[2 - i][i] == str
+        res=true
+      else
+        res=false
+        break
+      end
+    end
+    check << res 
+    check.any?(true)
   end
 
   def filled()
