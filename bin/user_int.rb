@@ -1,6 +1,6 @@
 load('../lib/logic.rb')
 class UserInteface
-  attr_accessor :player1 , :player2, :grid
+  attr_accessor :player1, :player2, :grid
   @@add = {
     1 => "11",
     2 => "13",
@@ -14,17 +14,17 @@ class UserInteface
   }
 
   def initialize()
-    @grid=Array.new(7,'*')
+    @grid=Array.new(7, '*')
     for i in (0...@grid.length)
-      @grid[i] = Array.new(7,'*')
+      @grid[i] = Array.new(7, '*')
     end
     for i in (1...@grid.length - 1)
       next if i % 2 == 0
       for j in (1...@grid[i].length)
-        @grid[i][j] = " "  if j % 2 != 0          
+        @grid[i][j] = " " if j % 2 != 0
       end
     end
-    @game=Game.new
+    @game = Game.new
   end  
 
   def execute
@@ -33,9 +33,7 @@ class UserInteface
     puts "the name of the player 2 ="
     @player2 = gets.chomp
     i = 2
-    rematch = true
-    while rematch 
-      rematch = false
+
     loop do
       display(@grid)
         if i == 2
@@ -45,7 +43,7 @@ class UserInteface
         end
         begin 
           puts "@player #{i} what's your next move : "
-          user_inpt=""
+          user_inpt = ""
             loop do
             user_inpt = gets.chomp.to_i
             break if (1..9).include?(user_inpt)
@@ -60,8 +58,7 @@ class UserInteface
           @grid[position[0].to_i][position[1].to_i] = "X" if i == 1
           @grid[position[0].to_i][position[1].to_i] = "O" if i == 2
         end
-      
-      
+        
       if @game.check_winner(@grid) == 1
         puts "player 1 wins"
         display(@grid) 
@@ -79,9 +76,6 @@ class UserInteface
       end
     end
     puts "Game is Finished"
-    puts "Do you want a rematch Y/N"
-    rematch = true if gets.chomp = "Y"
-    end
   end
 
   def display(grid)
@@ -92,7 +86,7 @@ class UserInteface
       print "\n"
     end
   end
-end 
+end
 
 game=UserInteface.new
 game.execute
