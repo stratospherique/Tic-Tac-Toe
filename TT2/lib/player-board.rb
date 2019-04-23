@@ -18,7 +18,7 @@ class Board
 
   def placement(move, i)
     @grid[move - 1] = "X" if i == 1
-    @grid[move - 1] == "O" if i == 2 
+    @grid[move - 1] = "O" if i == 2 
   end
 
 end

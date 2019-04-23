@@ -18,31 +18,31 @@ class Game
     puts 'Player 2, Whant\'s your name?'
     @player2.name = request_name
     i = 1
-    sign=["X","O"]
+    sign = ['X', 'O'] 
     loop do
-      curr_player = i == 1 ? @player1 : @player2
-
+      curr_player = (i == 1) ? @player1 : @player2
       system"clear"
-      display(@board.grid) 
-
+      display(@board.grid)
       move = request_move(@board.grid, curr_player.order)
-      
       @board.placement(move, curr_player.order) # << board
       if checkwin(@board.grid, sign[i - 1])
+        system"clear"
+        display(@board.grid)
         puts "Player #{curr_player.name} is the winner"
         break
       elsif checktie(@board.grid)
+        system"clear"
+        display(@board.grid)
         puts "No winner this time"
         break
       else
         i == 1 ? i = 2 : i = 1  
       end
-
     end
   end
 end
-player1=Player.new
-player2=Player.new
-board=Board.new
-game_starter=Game.new(board,player1,player2)
+player1 = Player.new
+player2 = Player.new
+board = Board.new
+game_starter = Game.new(board,player1,player2)
 game_starter.turn
