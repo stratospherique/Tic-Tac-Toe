@@ -8,17 +8,25 @@ class Game
   end
 
   def turn 
+      @player1.name=request_name
+      @player2.name=request_name
       i = 1
+      sign=["X","O"]
     loop do
-      display     # <<< user int
-      begin
-      move=requestMove     # <<< user int
+      curr_player= i==1 ? @player1 : @player2
+      display(@board)     # <<< user int
+      move=requestMove(@board,curr_player.order)     # <<< user int
+      @board.placement(move,curr_player.order) # << board
+      if checkwin(@board,sign[i-1])
+        puts "Player #{curr_player.name} is the winner"
+        break
+      elsif checktie(@board)
+        puts "No winner this time"
+        break
+      else
+        i == 1 ? i = 2 : i = 1  
       end
-      check_valid # << board
-      placement # << board
-      checkwin  # << rules
-      checktie   # << rules
-      i == 1 ? i = 2 : i = 1
+
     end
   end
 end

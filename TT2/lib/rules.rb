@@ -11,13 +11,8 @@ module GameRules
     vert3 = [Board[2], Board[5], Board[8]].all?(str)
     diag1 = [Board[0], Board[4], Board[8]].all?(str)
     diag2 = [Board[2], Board[4], Board[6]].all?(str)
-    player1 = [hor1, hor2, hor3, vert1, vert2, vert3, diag1, diag2].any?(true)
-    player2 = [hor1, hor2, hor3, vert1, vert2, vert3, diag1, diag2].any?(true)
-    if player1 == true
-      true
-    else
-      false
-    end
+    [hor1, hor2, hor3, vert1, vert2, vert3, diag1, diag2].any?(true)
+    
   end
 
   def checktie(board)   # << rules

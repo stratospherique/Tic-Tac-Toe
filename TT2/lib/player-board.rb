@@ -1,5 +1,5 @@
 class Player
-  attr_accessor :name,:order
+  attr_accessor :name, :order
   @@track = 0
   def initialize()
     @@track += 1
