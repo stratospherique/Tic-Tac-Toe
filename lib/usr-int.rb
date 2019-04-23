@@ -6,7 +6,7 @@ module UsrInterface
   def request_move(board,i)
     begin 
       puts "@player #{i} what's your next move : "
-      user_inpt=""
+      user_inpt = ""
         loop do
         user_inpt = gets.chomp.to_i
         break if (1..9).include?(user_inpt)
