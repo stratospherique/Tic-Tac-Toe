@@ -1,6 +1,4 @@
-module GameRules
-  
-  
+module GameRules  
   def  checkwin(board,str)  # << rules
     hor1 = board[0..2].all?(str)
     hor2 = board[3..5].all?(str)
@@ -10,8 +8,7 @@ module GameRules
     vert3 = [board[2], board[5], board[8]].all?(str)
     diag1 = [board[0], board[4], board[8]].all?(str)
     diag2 = [board[2], board[4], board[6]].all?(str)
-    [hor1, hor2, hor3, vert1, vert2, vert3, diag1, diag2].any?(true)
-    
+    [hor1, hor2, hor3, vert1, vert2, vert3, diag1, diag2].any?(true)    
   end
 
   def checktie(board)   # << rules

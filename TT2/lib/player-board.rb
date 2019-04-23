@@ -9,7 +9,6 @@ class Player
 end
 
 class Board
-
   attr_accessor :grid
 
   def initialize()
@@ -20,5 +19,4 @@ class Board
     @grid[move - 1] = "X" if i == 1
     @grid[move - 1] = "O" if i == 2 
   end
-
 end
