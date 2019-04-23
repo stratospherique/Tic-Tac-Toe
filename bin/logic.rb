@@ -1,6 +1,6 @@
-load '../lib/player-board.rb'
+load 'player-board.rb'
 load '../lib/usr-int.rb'
-load '../lib/rules.rb'
+load 'rules.rb'
 
 class Game
   attr_accessor :board
