@@ -26,13 +26,11 @@ class Player
         system"clear"
         display(@board.grid)
         win(self.name)
-#       puts "Player #{curr_player.name} is the winner"
         return true
       elsif checktie(@board.grid)
         system"clear"
         display(@board.grid)
         tie
-#       puts "No winner this time"
         return true
       else
         return false
