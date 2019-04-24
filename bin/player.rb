@@ -13,7 +13,7 @@ class Player
     @name = "Player #{@@track}"
     @order = @@track
     @board = board
-    @xo = @order==1 ? "X" : "O"
+    @xo = @order == 1 ? "X" : "O"
   end
 
   def play()

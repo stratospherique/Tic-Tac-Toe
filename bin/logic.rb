@@ -17,8 +17,8 @@ class Game
     @player2.name = request_name
     
     loop do
-    break if @player1.play
-    break if @player2.play
+    break if @player1.play(1)
+    break if @player2.play(2)
 
 =begin
       curr_player = (i == 1) ? @player1 : @player2
