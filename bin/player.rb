@@ -1,4 +1,3 @@
-load 'player.rb'
 load 'board.rb'
 load '../lib/user-interface.rb'
 load 'rules.rb'
@@ -21,7 +20,7 @@ class Player
       system"clear"
       display(@board.grid)
       move = request_move(@board.grid, self.order)
-      @board.placement(move, curr_player.order) # << board
+      @board.placement(move, self.order) # << board
       if checkwin(@board.grid, @xo)
         system"clear"
         display(@board.grid)
