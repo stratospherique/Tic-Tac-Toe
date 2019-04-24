@@ -7,20 +7,20 @@ class Game
   attr_accessor :board
   include UsrInterface
   include GameRules
-  def initialize(board, player1, player2 )
-    @board = board
+  def initialize(player1, player2 )
     @player1 = player1
     @player2 = player2
   end
 
   def turn
-    puts 'Player 1, What\'s your name?'
     @player1.name = request_name
-    puts 'Player 2, Whant\'s your name?'
     @player2.name = request_name
-    i = 1
-    sign = ['X', 'O'] 
+    
     loop do
+    break if @player1.play
+    break if @player2.play
+
+=begin
       curr_player = (i == 1) ? @player1 : @player2
       system"clear"
       display(@board.grid)
@@ -39,11 +39,12 @@ class Game
       else
         i == 1 ? i = 2 : i = 1  
       end
+=end
     end
   end
 end
-player1 = Player.new
-player2 = Player.new
 board = Board.new
+player1 = Player.new(board)
+player2 = Player.new(board)
 game_starter = Game.new(board,player1,player2)
 game_starter.turn
