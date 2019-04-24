@@ -1,5 +1,6 @@
-load 'player-board.rb'
-load '../lib/usr-int.rb'
+load 'player.rb'
+load 'board.rb'
+load '../lib/user-interface.rb'
 load 'rules.rb'
 
 class Game
