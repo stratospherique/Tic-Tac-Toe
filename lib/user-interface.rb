@@ -25,4 +25,13 @@ module UsrInterface
     puts "Welcome Player #{i}, please state your name : "
     gets.chomp
   end
+
+  def win(user)
+    puts "#{user} congatulations!! \n Winner, Winner, Chicken Dinner"
+  end
+
+  def tie
+    puts "This time, nobody came out Victorious!! \n We are all Losers!!"
+  end
+
 end
