@@ -21,7 +21,8 @@ module UsrInterface
     end
   end
 
-  def request_name()
+  def request_name(i)
+    puts "Welcome Player #{i}, please state your name : "
     gets.chomp
   end
 end
