@@ -1,5 +1,5 @@
 class Board
-  attr_accessor :grid
+  attr_reader :grid
 
   def initialize()
     @grid = (1..9).to_a
