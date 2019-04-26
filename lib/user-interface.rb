@@ -31,7 +31,7 @@ module UsrInterface
   end
 
   def tie
-    puts "This time, nobody came out Victorious!! \n We are all Losers!!"
+    puts "This time, nobody came out Victorious!! "
   end
 
 end
