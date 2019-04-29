@@ -13,6 +13,6 @@ module GameRules
   end
 
   def checktie(board)
-    board.all?(String)
+    board.all?(String) && !checkwin(board, "X") && !checkwin(board, "O")
   end
 end
