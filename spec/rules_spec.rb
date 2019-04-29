@@ -75,12 +75,15 @@ describe GameRules do
 
   end
 
-  # describe "#checktie" do
-  #   it "Should return true if no win condition is met" do
-  #     expect(checkwin(["X", "O", "X", "X", "O", "O", ""]))
+  describe "#checktie" do
+    it "Should return true if no win condition is met and the game is a tie" do
+      expect(checktie(["X", "O", "X", "O", "O", "X", "O", "X", "O"])).to be(true)
+    end
 
-
-  # end
+    it "Should return false if a win condition is met and the board is filled" do
+      expect(checktie(["X", "O", "X", "O", "O", "X", "O", "O", "X"])).to be(false)
+    end
+  end
 
 end
 
