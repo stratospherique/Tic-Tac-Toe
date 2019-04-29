@@ -1,6 +1,6 @@
 # Game Rule Module for the Tic Tac Toe command line Game
 module GameRules
-  def  checkwin(board,str)
+  def checkwin(board, str)
     hor1 = board[0..2].all?(str)
     hor2 = board[3..5].all?(str)
     hor3 = board[6..8].all?(str)
@@ -13,6 +13,6 @@ module GameRules
   end
 
   def checktie(board)
-    board.all?(String)
+    board.all?(String) && !checkwin(board, "X") && !checkwin(board, "O")
   end
 end
