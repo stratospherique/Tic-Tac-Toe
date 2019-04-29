@@ -1,4 +1,4 @@
-load 'board.rb'
+  load 'board.rb'
 load 'rules.rb'
 load '../lib/user-interface.rb'
 
